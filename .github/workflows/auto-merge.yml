@@ -17,4 +17,4 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: PR Info
-        run: echo ${{ toJson(github) }}
+        run: echo ${{ toJson(github.event) }}
