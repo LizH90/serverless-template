@@ -1,0 +1,15 @@
+name: Deploy Project to Staging
+
+# Deploy to staging on push to master branch.
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read .nvmrc
+        run: echo Runs deployment
