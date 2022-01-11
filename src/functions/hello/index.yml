@@ -3,7 +3,7 @@ hello:
   memorySize: 128
   events:
     - http:
-        path: hello1
+        path: hello2
         method: get
     - schedule:
         rate: rate(5 minutes)
