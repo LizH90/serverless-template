@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - uses: actions/checkout@v2
       - name: Update values.yaml
         uses: fjogeleit/yaml-update-action@master
         with:
