@@ -14,7 +14,7 @@ jobs:
       - name: Update values.yaml
         uses: fjogeleit/yaml-update-action@master
         with:
-          valueFile: 'dependabot.yml'
+          valueFile: serverless.yml
           propertyPath: 'frameworkVersion'
           value: v1.0.1
           commitChange: false
