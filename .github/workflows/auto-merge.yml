@@ -1,6 +1,6 @@
 name: Dependabot auto-merge
 on:
-  pull_request:
+  pull_request_target:
 
 permissions:
   pull-requests: write
@@ -11,6 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - uses: actions/checkout@v2
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@master
+        with:
+          valueFile: serverless.yml
+          propertyPath: 'frameworkVersion'
+          value: v1.0.1
+          commitChange: false
+          updateFile: true
       # - name: Dependabot metadata
       #   id: metadata
       #   uses: dependabot/fetch-metadata@v1.1.1
