@@ -11,31 +11,31 @@ jobs:
     runs-on: ubuntu-latest
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Update values.yaml
-        uses: fjogeleit/yaml-update-action@master
-        with:
-          valueFile: serverless.yml
-          propertyPath: 'frameworkVersion'
-          value: v1.0.1
-          commitChange: true
-          updateFile: true
-          message: 'update yml'
-          branch: ${{ github.head_ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: actions/checkout@v2
+      # - name: Update values.yaml
+      #   uses: fjogeleit/yaml-update-action@master
+      #   with:
+      #     valueFile: serverless.yml
+      #     propertyPath: 'frameworkVersion'
+      #     value: v1.0.1
+      #     commitChange: true
+      #     updateFile: true
+      #     message: 'update yml'
+      #     branch: ${{ github.head_ref }}
+      #     token: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Dependabot metadata
       #   id: metadata
       #   uses: dependabot/fetch-metadata@v1.1.1
       #   with:
       #     github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Enable auto-merge for Dependabot PRs
-      #   run: gh pr merge --auto --merge "$PR_URL"
+      # - name: Approve a PR
+      #   run: gh pr review --approve "$PR_URL"
       #   env:
       #     PR_URL: ${{ github.event.pull_request.html_url }}
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Enable auto-merge for Dependabot PRs
+        run: gh pr merge --auto --merge "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
