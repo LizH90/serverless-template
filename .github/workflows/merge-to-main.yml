@@ -1,0 +1,15 @@
+name: Merge to main
+
+# Deploy to staging on push to master branch.
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
