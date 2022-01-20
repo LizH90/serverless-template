@@ -1,17 +1,18 @@
-name: Merge to main
-
-# Deploy to staging on push to master branch.
+name: Sync multiple branches
 on:
   push:
-    branches:
-      - staging
-
+    tags:
+      - v*
 jobs:
-  deploy:
+  sync-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        base: main
-        branch: staging
+
+      - name: Merge staging -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: staging
+          target_branch: main
+          github_token: ${{ github.token }}
